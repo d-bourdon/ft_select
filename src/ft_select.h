@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 16:08:36 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 18:14:17 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <term.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <sys/ioctl.h>
 # include "../libft/libft.h"
 
 typedef struct		s_info
