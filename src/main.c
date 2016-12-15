@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 13:25:40 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:09:02 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ int		main(int argc, char** argv)
 	t_info	*info;
 	int d;
 	d = argc;
-	d = argv[0][0];
 	info = ft_init_info();
-	if (ft_init_term(info) != 0)
+	if (ft_parssing_opt(argv, info) == 0)
 	{
-		printf("HELLO\n");
- 		return (1);
+		printf("HELLO %d\n", info->opt);
+		exit(0);
 	}
-	printf("OK\n");
- 	voir_touche();
+	printf("OPT : %d\n", info->opt);
+	if (ft_init_term(info) != 0)
+		return (1);
+
+	voir_touche();
 return (0);
 }
- 
+
 int     voir_touche()
 {
   char     buffer[3];

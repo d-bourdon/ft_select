@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 14:05:24 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:08:36 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 typedef struct		s_info
 {
 	struct termios	term;
-
+	int				opt;
 }					t_info;
 /*
 ** main.c
@@ -36,5 +36,9 @@ int					my_outc(int c);
 */
 int					ft_init_term(t_info *info);
 t_info				*ft_init_info(void);
+/*
+** parssing.c
+*/
+int					ft_parssing_opt(char **tabt, t_info *info);
 
 #endif

@@ -43,7 +43,7 @@ re: fclean all
 	-@make re -C libft/
 
 norme:
-	@norminette *.[ch] ./libft/*.[ch]
+	@norminette ./src/*.[ch] ./libft/*.[ch]
 
 check:
 	@echo "***** Verification norme :"
