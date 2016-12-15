@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 20:38:29 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 20:58:31 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,21 @@ typedef struct		s_info
 {
 	struct termios	term;
 	int				opt;
+	int				l_win;
+	int				h_win;
+	int				l_max;
+	int				n_elem;
+	t_elem			*elem;
+
 }					t_info;
+
+typedef struct		s_elem
+{
+	char			*name;
+	int				len;
+	int				etat;
+	t_elem			next;
+}					t_elem;
 /*
 ** main.c
 */

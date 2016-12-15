@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 20:40:10 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 20:58:32 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ int		main(int argc, char** argv)
 	ft_putstr("\033[?1049h\033[H");
 	info = ft_init_info();
 	if (ft_parssing_opt(argv, info) == 0)
-	{
-		printf("HELLO %d\n", info->opt);
 		exit(0);
-	}
-	printf("OPT : %d\n", info->opt);
+// up, traitement erreur
+	info->elem = ft_stock(argv, info, )
 	if (argv[1][0] == '-')
 		i++;
 	while (argv[i] && i < argc)
