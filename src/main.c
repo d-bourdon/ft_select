@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 19:00:52 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 20:40:10 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		main(int argc, char** argv)
 	t_info	*info;
 	int 	i;
 	i = 1;
-	//ft_putstr("\033[?1049h\033[H");
+	ft_putstr("\033[?1049h\033[H");
 	info = ft_init_info();
 	if (ft_parssing_opt(argv, info) == 0)
 	{
@@ -34,10 +34,15 @@ int		main(int argc, char** argv)
 	} 
 	if (ft_init_term(info) != 0)
 		return (1);
-
 	voir_touche();
-	//ft_putstr("\033[?1049l");
+	ft_putstr("\033[?1049l");
 return (0);
+}
+
+void abc(int a)
+{
+	a = 0;
+	printf("TA modif la fenettre\n");
 }
 
 int     voir_touche()
@@ -47,7 +52,7 @@ int     voir_touche()
   int  blop;
   //char 	*area;
   struct winsize	w;
- 
+ signal(SIGWINCH, &abc);
   while (1)
   {
     read(0, buffer, 3);

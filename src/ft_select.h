@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/15 18:14:17 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/15 20:38:29 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/ioctl.h>
+# include <signal.h>
 # include "../libft/libft.h"
 
 typedef struct		s_info
@@ -42,4 +43,6 @@ t_info				*ft_init_info(void);
 */
 int					ft_parssing_opt(char **tabt, t_info *info);
 
+
+void abc(int a);
 #endif
