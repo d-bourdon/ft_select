@@ -10,9 +10,9 @@
 #*                                                                            *#
 #* ************************************************************************** *#
 
-NAME = fdf
+NAME = ft_select
 
-SRC = 	*.c
+SRC = ./src/*.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -23,7 +23,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME) : libft $(OBG)
-	-@clang $(FLAGS) $(SRC) -g -o $(NAME) -L./libft/ -lft
+	-@clang $(FLAGS) $(SRC) -g -o $(NAME) -L./libft/ -lft -l termcap
 	@echo "Compilation"
 
 libft:
