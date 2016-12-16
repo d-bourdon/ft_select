@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 14:20:09 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 18:34:00 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/16 18:51:43 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,11 @@ int		ft_print(t_elem **elem, t_info *info, int i)
 
 	if (i == 0 || i < (info->l_win / info->l_max))
 	{
+		if ((*elem)->etat == 1)
+			ft_putstr("\033[4m");
 		ft_putstr((*elem)->name);
+		if ((*elem)->etat == 1)
+			ft_putstr("\033[0m");
 		while (j++ < (info->l_max - (*elem)->len) + 2)
 			ft_putchar(' ');
 		i++;

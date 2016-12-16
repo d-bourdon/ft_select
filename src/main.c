@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 18:36:38 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/16 19:06:43 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int		main(int argc, char** argv)
 	if (ft_parssing_opt(argv, info) == 0)
 		exit(0);// traitement erreur, affichage aide
 	ft_stock(argv, info, argc);
+	info->elem->etat = 1;
 	ft_affichage(info);
 	// while (info->elem)
 	// {
@@ -50,23 +51,39 @@ void abc(int a)
 int     voir_touche()
 {
   char     buffer[3];
-  //char    *res;
-  int  blop;
+  t_elem *tmp;
+  tmp = tinfo->elem;
+  char    *res;
+ //int  blop;
   //char 	*area;
-  struct winsize	w;
+  //struct winsize	w;
  signal(SIGWINCH, &abc);
   while (1)
   {
     read(0, buffer, 3);
     if (buffer[0] == 27)
     {
-	ioctl(0, TIOCGWINSZ, &w);
-    	blop = tgetnum("co");
-		//if ((res = tgetstr("co", NULL)) == NULL)
-		  //  return (-1);
-		printf("test %d - %d\n", w.ws_col, w.ws_row);
-		//tputs(res, 1, my_outc);
-    	//printf("C'est une fleche !\n");
+		while (tmp)
+		{
+			if (tmp->etat != 0)
+			{
+				tmp->etat = 0;
+				if (tmp->next)
+					tmp->next->etat = 1;
+				else
+				{
+					tinfo->elem->etat = 1;
+					break;
+				}
+				tmp = tmp->next;
+			}
+			tmp = tmp->next;
+		}
+		tmp = tinfo->elem;
+		if ((res = tgetstr("cl", NULL)) == NULL)
+	 	    return (-1);
+	 	tputs(res, 0, my_outc);
+		ft_affichage(tinfo);
     }
     else if (buffer[0] == 4)
     {
