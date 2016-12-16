@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 14:34:31 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/16 18:33:20 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_elem
 	struct s_elem	*next;
 }					t_elem;
 
+t_info				*tinfo;
 /*
 ** main.c
 */
@@ -72,6 +73,12 @@ void				ft_lstaddend(t_elem **liste, t_elem *ajout);
 ** stock.c
 */
 void				ft_stock(char **argv, t_info *info, int argc);
+
+/*
+** affichage.c
+*/
+void				ft_affichage(t_info *info);
+int					ft_print(t_elem **elem, t_info *info, int i);
 
 void abc(int a);
 #endif
