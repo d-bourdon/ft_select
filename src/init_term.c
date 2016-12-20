@@ -34,10 +34,7 @@ t_elem	*ft_init_elem(void)
 	elem->len = 0;
 	elem->etat = 0;
 	elem->next = NULL;
-	elem->p1[0] = 0;
-	elem->p1[1] = 0;
-	elem->p2[0] = 0;
-	elem->p2[1] = 0;
+	elem->select = 0;
 	return (elem);
 }
 

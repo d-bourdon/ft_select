@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 19:06:43 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/19 15:25:26 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,76 +21,51 @@ int		main(int argc, char** argv)
 	info = ft_init_info();
 	tinfo = info;
 	if (ft_parssing_opt(argv, info) == 0)
-		exit(0);// traitement erreur, affichage aide
+		ft_erreur(NULL, 1);
 	ft_stock(argv, info, argc);
 	info->elem->etat = 1;
-	ft_affichage(info);
-	// while (info->elem)
-	// {
-	// 	printf("%s - %d - %d\n", info->elem->name, info->elem->len, info->elem->etat);
-	// 	info->elem = info->elem->next;
-	// } 
+	ft_affichage(info, 0);
+
 	if (ft_init_term(info) != 0)
-		return (1);
-	voir_touche();
+		ft_erreur(NULL, 1);
+	voir_touche(info);
 	ft_putstr("\033[?1049l");
+	//ft_putstr("test un deux\n");
 return (0);
 }
 
 void abc(int a)
 {
 	a = 0;
-	char *res; 
-	if ((res = tgetstr("cl", NULL)) == NULL)
- 	    return;
- 	tputs(res, 0, my_outc);
-	ft_affichage(tinfo);
-	//ft_putstr("TA modif la fenettre");
+	ft_affichage(tinfo, 1);
 }
 
-int     voir_touche()
+int     voir_touche(t_info *info)
 {
   char     buffer[3];
-  t_elem *tmp;
-  tmp = tinfo->elem;
-  char    *res;
- //int  blop;
-  //char 	*area;
-  //struct winsize	w;
+
  signal(SIGWINCH, &abc);
   while (1)
   {
     read(0, buffer, 3);
     if (buffer[0] == 27)
     {
-		while (tmp)
-		{
-			if (tmp->etat != 0)
-			{
-				tmp->etat = 0;
-				if (tmp->next)
-					tmp->next->etat = 1;
-				else
-				{
-					tinfo->elem->etat = 1;
-					break;
-				}
-				tmp = tmp->next;
-			}
-			tmp = tmp->next;
-		}
-		tmp = tinfo->elem;
-		if ((res = tgetstr("cl", NULL)) == NULL)
-	 	    return (-1);
-	 	tputs(res, 0, my_outc);
-		ft_affichage(tinfo);
+    	if (buffer[2] == 67 || buffer[2] == 66)
+			ft_move_next(info);
+		if (buffer[2] == 68 || buffer[2] == 65)
+			ft_move_prev(info);
+		ft_affichage(info, 1);
     }
     else if (buffer[0] == 4)
-    {
-      printf("Ctlr+d, on quitte !\n");
-      return (0);
-    }
-  }
+    	break ;
+    else if (buffer[0] == 32 && buffer[1] == 0 && buffer[2] == 0)
+    	ft_selection(info);
+    else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
+    	ft_suppr(info);
+    else if (buffer[0] == 10 && buffer[1] == 0 && buffer[2] == 0)
+    	ft_return(info);
+    ft_bzero(buffer, 3);
+   }
   return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 18:33:20 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/19 14:37:37 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ typedef struct		s_elem
 	char			*name;
 	int				len;
 	int				etat;
-	int				p1[2];
-	int				p2[2];
+	int				select;
 	struct s_elem	*next;
 }					t_elem;
 
@@ -49,8 +48,9 @@ t_info				*tinfo;
 /*
 ** main.c
 */
-int					voir_touche(void);
+int					voir_touche(t_info *info);
 int					my_outc(int c);
+void				abc(int a);
 
 /*
 ** init_term.c
@@ -77,8 +77,20 @@ void				ft_stock(char **argv, t_info *info, int argc);
 /*
 ** affichage.c
 */
-void				ft_affichage(t_info *info);
+void				ft_affichage(t_info *info, int mode);
 int					ft_print(t_elem **elem, t_info *info, int i);
+/*
+** erreur.c
+*/
+void				ft_erreur(char *str, int mode);
 
-void abc(int a);
+/*
+** mouv.c
+*/
+void				ft_move_next(t_info *info);
+void				ft_move_prev(t_info *info);
+void				ft_selection(t_info *info);
+void				ft_suppr(t_info *info);
+void				ft_return(t_info *info);
+
 #endif
