@@ -26,6 +26,7 @@
 typedef struct		s_info
 {
 	struct termios	term;
+	struct termios	b_term;
 	int				opt;
 	int				l_win;
 	int				h_win;
@@ -51,6 +52,8 @@ t_info				*tinfo;
 int					voir_touche(t_info *info);
 int					my_outc(int c);
 void				abc(int a);
+void stop(int a);
+void		cont(int a);
 
 /*
 ** init_term.c

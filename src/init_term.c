@@ -48,11 +48,14 @@ int		ft_init_term(t_info *info)
 		return (-1);
 	if (tcgetattr(0, &(info->term)) == -1)
 		return (-1);
+	if (tcgetattr(0, &(info->b_term)) == -1)
+		return (-1);
 	info->term.c_lflag &= ~(ICANON);
 	info->term.c_lflag &= ~(ECHO);
 	info->term.c_cc[VMIN] = 1;
 	info->term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &(info->term)) == -1)
 		return (-1);
+	tputs(tgetstr("vi", NULL), 1, my_outc);
 	return (0);
 }

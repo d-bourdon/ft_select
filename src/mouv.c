@@ -113,7 +113,9 @@ void	ft_return(t_info *info)
 	t_elem	*tmp;
 
 	tmp = info->elem;
+	tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
 	ft_putstr("\033[?1049l");
+	tputs(tgetstr("ve", NULL), 1, my_outc);
 	while (tmp)
 	{
 		if (tmp->select == 1)
