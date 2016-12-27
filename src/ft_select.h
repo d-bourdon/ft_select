@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/19 14:37:37 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/27 08:29:28 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ t_info				*tinfo;
 */
 int					voir_touche(t_info *info);
 int					my_outc(int c);
-void				abc(int a);
-void stop(int a);
-void		cont(int a);
 
 /*
 ** init_term.c
@@ -86,6 +83,7 @@ int					ft_print(t_elem **elem, t_info *info, int i);
 ** erreur.c
 */
 void				ft_erreur(char *str, int mode);
+int					ft_supprone(t_info *info, t_elem *tmp);
 
 /*
 ** mouv.c
@@ -95,5 +93,13 @@ void				ft_move_prev(t_info *info);
 void				ft_selection(t_info *info);
 void				ft_suppr(t_info *info);
 void				ft_return(t_info *info);
+
+/*
+** signal.c
+*/
+void				c_signal(void);
+void				abc(int a);
+void				stop(int a);
+void				cont(int a);
 
 #endif

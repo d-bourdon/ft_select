@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 14:25:23 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/19 14:44:41 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/27 08:29:55 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,28 +82,23 @@ void	ft_selection(t_info *info)
 void	ft_suppr(t_info *info)
 {
 	t_elem	*tmp;
+	t_elem	*tmp2;
 
 	tmp = info->elem;
-	if (tmp->etat == 1 && tmp->next == NULL)
-		ft_erreur(NULL, 1);
-	if (tmp->etat == 1 && tmp->next)
-	{
-		ft_move_next(info);
-		free(tmp->name);
-		info->elem = info->elem->next;
-		ft_affichage(info, 1);
+	if (ft_supprone(info, tmp) == 1)
 		return ;
-	}
 	while (tmp->next && tmp->next->etat != 1)
 		tmp = tmp->next;
 	if (tmp->next && tmp->next->etat == 1)
 	{
 		ft_move_next(info);
-		free(tmp->next->name);
+		tmp2 = tmp->next;
+		free(tmp2->name);
 		if (tmp->next->next != NULL)
 			tmp->next = tmp->next->next;
 		else
 			tmp->next = NULL;
+		free(tmp2);
 		ft_affichage(info, 1);
 	}
 }
