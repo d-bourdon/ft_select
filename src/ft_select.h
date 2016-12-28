@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 15:19:18 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 15:58:10 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ void				ft_return(t_info *info);
 /*
 ** mouv2.c
 */
-int		ft_move(t_info *info, char *buff);
-void	ft_move_down(t_info *info);
-void	ft_move_up(t_info *info);
+int					ft_move(t_info *info, char *buff);
+void				ft_move_down(t_info *info);
+void				ft_move_up(t_info *info);
 
 /*
 ** signal.c
