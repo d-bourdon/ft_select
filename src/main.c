@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 11:19:23 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 13:32:51 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@ int		voir_touche(t_info *info)
 	{
 	read(0, buffer, 3);
 	if (buffer[0] == 27)
-	{
-		if (buffer[1] == 0 && buffer[2] == 0)
+		if (ft_move(info, buffer) == 0)
 			return (0);
-		if (buffer[2] == 67 || buffer[2] == 66)
-			ft_move_next(info);
-		if (buffer[2] == 68 || buffer[2] == 65)
-			ft_move_prev(info);
-	}
-	else if (buffer[0] == 32 && buffer[1] == 0 && buffer[2] == 0)
+	if (buffer[0] == 32 && buffer[1] == 0 && buffer[2] == 0)
 		ft_selection(info);
 	else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
 		ft_suppr(info);
