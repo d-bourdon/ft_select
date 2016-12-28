@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 15:58:10 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 20:06:12 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 # include "../libft/libft.h"
-# include <sys/stat.h> 
+# include <sys/stat.h>
 # include <fcntl.h>
 
 typedef struct		s_info
@@ -31,6 +31,7 @@ typedef struct		s_info
 	struct termios	b_term;
 	int				fd;
 	int				opt;
+	char			**opts;
 	int				l_win;
 	int				h_win;
 	int				l_max;
@@ -48,7 +49,7 @@ typedef struct		s_elem
 	struct s_elem	*next;
 }					t_elem;
 
-t_info				*tinfo;
+t_info				*g_info;
 /*
 ** main.c
 */
@@ -82,6 +83,8 @@ void				ft_stock(char **argv, t_info *info, int argc);
 */
 void				ft_affichage(t_info *info, int mode);
 int					ft_print(t_elem **elem, t_info *info, int i);
+void				ft_print_lign(t_info *info);
+
 /*
 ** erreur.c
 */

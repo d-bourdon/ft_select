@@ -6,24 +6,22 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 11:01:32 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/27 08:29:48 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 20:14:31 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void ft_erreur(char *str, int mode)
+void	ft_erreur(char *str, int mode)
 {
 	if (mode == 1 && !str)
 	{
-		tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
-		ft_putstr("\033[?1049l");
-		tputs(tgetstr("ve", NULL), 1, my_outc);
-		exit(1);
+		ft_putstr_fd("un deux trois", g_info->fd);
+		exit(EXIT_FAILURE);
 	}
 	if (mode == 2 && str)
 	{
-		tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
+		tcsetattr(0, TCSADRAIN, &(g_info->b_term));
 		ft_putstr("\033[?1049l");
 		tputs(tgetstr("ve", NULL), 1, my_outc);
 		ft_putstr("ERREUR FATAL : ");

@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 14:25:23 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 11:59:10 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 20:06:58 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_move_next(t_info *info)
 {
-	t_elem *tmp;
+	t_elem	*tmp;
 
 	tmp = info->elem;
 	while (tmp)
@@ -37,7 +37,7 @@ void	ft_move_next(t_info *info)
 
 void	ft_move_prev(t_info *info)
 {
-	t_elem *tmp;
+	t_elem	*tmp;
 	int		i;
 
 	i = 0;
@@ -48,7 +48,7 @@ void	ft_move_prev(t_info *info)
 		{
 			tmp->next->etat = 0;
 			tmp->etat = 1;
-			i = 1; 
+			i = 1;
 		}
 		tmp = tmp->next;
 	}
@@ -61,7 +61,7 @@ void	ft_move_prev(t_info *info)
 
 void	ft_selection(t_info *info)
 {
-	t_elem *tmp;
+	t_elem	*tmp;
 
 	tmp = info->elem;
 	while (tmp && tmp->etat != 1)
@@ -108,7 +108,7 @@ void	ft_return(t_info *info)
 	t_elem	*tmp;
 
 	tmp = info->elem;
-	tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
+	tcsetattr(0, TCSADRAIN, &(info->b_term));
 	ft_putstr_fd("\033[?1049l", info->fd);
 	tputs(tgetstr("ve", NULL), 1, my_outc);
 	while (tmp)
@@ -116,11 +116,17 @@ void	ft_return(t_info *info)
 		if (tmp->select == 1)
 		{
 			ft_putstr(tmp->name);
-			ft_putchar(' ');
+			if (info->opts && info->opts[0])
+				ft_putstr(info->opts[0]);
+			else
+				ft_putchar(' ');
+			if (info->opts && info->opts[1])
+				ft_putstr(info->opts[1]);
 		}
 		free(tmp->name);
 		tmp = tmp->next;
 	}
-	ft_putchar('\n');
+	if (info->opt != 2 && info->opt != 4)
+		ft_putchar('\n');
 	exit(0);
 }
