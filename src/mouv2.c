@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 13:20:00 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 15:56:54 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 18:05:42 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,37 @@ int		ft_move(t_info *info, char *buff)
 		return (1);
 }
 
+static t_elem	*ft_move_down2(t_info *info, int i, int j)
+{
+	t_elem *tmp;
+	if (info->n_elem % j != 0)
+		i = i - (j - (info->n_elem % j));
+	if (i < 0)
+		i = j - 1;
+	tmp = info->elem;
+	while(tmp && i-- > 0)
+		tmp = tmp->next;
+	return (tmp);
+}
+
 void	ft_move_down(t_info *info)
 {
 	t_elem	*tmp;
 	int		i;
+	int		j;
 
+	j = info->l_win / info->l_max;
+	i = j;
 	tmp = info->elem;
 	while (tmp)
 	{
 		if (tmp->etat == 1)
 		{
-			i = info->l_win / info->l_max;
-			if (i == 1)
-				return(ft_move_next(info));
 			tmp->etat = 0;
-			while (tmp && i > 0)
-			{
+			while (tmp && i-- > 0)
 				tmp = tmp->next;
-				i--;
-			}
 			if (!tmp)
-			{
-				tmp = info->elem;
-				while(tmp && i > 0)
-				{
-					tmp = tmp->next;
-					i--;
-				}
-			}
+				tmp = ft_move_down2(info, i, j);
 			tmp->etat = 1;
 			return ;
 		}
@@ -65,11 +68,22 @@ void	ft_move_down(t_info *info)
 
 void	ft_move_up(t_info *info)
 {
+	int		i;
+	int		j;
 	t_elem	*tmp;
 
 	tmp = info->elem;
-	while (tmp)
+	j = info->l_win / info->l_max;
+	i = 1;
+	while(tmp && tmp->etat != 1)
 	{
 		tmp = tmp->next;
+		i++;
 	}
+	if (i > j)
+		i = j;
+	else
+		i = i - (i % j) + (info->n_elem % j);
+	while (i-- > 0)
+		ft_move_prev(info);
 }
