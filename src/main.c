@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/27 08:07:03 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 11:19:23 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		main(int argc, char** argv)
 	t_info	*info;
 	int 	i;
 	i = argc;
-	ft_putstr("\033[?1049h\033[H");
 	info = ft_init_info();
+	ft_putstr_fd("\033[?1049h\033[H", info->fd);
 	tinfo = info;
 	if (ft_parssing_opt(argv, info) == 0)
 		ft_erreur(NULL, 1);
@@ -30,9 +30,9 @@ int		main(int argc, char** argv)
 		ft_erreur(NULL, 1);
 	voir_touche(info);
 	tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
-	ft_putstr("\033[?1049l");
+	ft_putstr_fd("\033[?1049l", info->fd);
 	tputs(tgetstr("ve", NULL), 1, my_outc);
-	return (0);
+	return (1);
 }
 
 int		voir_touche(t_info *info)
@@ -66,6 +66,6 @@ int		voir_touche(t_info *info)
 
 int		my_outc(int c)
 {
-	ft_putchar(c);
+	ft_putchar_fd(c, tinfo->fd);
 	return(0);
 }

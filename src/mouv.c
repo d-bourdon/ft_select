@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 14:25:23 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/27 08:29:55 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 11:59:10 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_return(t_info *info)
 
 	tmp = info->elem;
 	tcsetattr(0, TCSADRAIN, &(tinfo->b_term));
-	ft_putstr("\033[?1049l");
+	ft_putstr_fd("\033[?1049l", info->fd);
 	tputs(tgetstr("ve", NULL), 1, my_outc);
 	while (tmp)
 	{
@@ -121,5 +121,6 @@ void	ft_return(t_info *info)
 		free(tmp->name);
 		tmp = tmp->next;
 	}
+	ft_putchar('\n');
 	exit(0);
 }

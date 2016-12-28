@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/27 08:29:28 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 11:21:08 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@
 # include <sys/ioctl.h>
 # include <signal.h>
 # include "../libft/libft.h"
+# include <sys/stat.h> 
+# include <fcntl.h>
 
 typedef struct		s_info
 {
 	struct termios	term;
 	struct termios	b_term;
+	int				fd;
 	int				opt;
 	int				l_win;
 	int				h_win;

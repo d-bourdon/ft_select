@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 12:32:49 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/16 13:10:37 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 11:21:48 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ t_info	*ft_init_info(void)
 	info->l_max = 0;
 	info->n_elem = 0;
 	info->elem = NULL;
+	info->fd = open("/dev/tty", O_RDWR);
+	if (info->fd == -1)
+		ft_erreur("fail ouverture /dev/tty", 2);
 	return (info);
 }
 

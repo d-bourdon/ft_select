@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/27 07:59:32 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/28 11:35:53 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void stop(int a)
 	a = 0;
 	if (tcsetattr(0, TCSADRAIN, &(tinfo->b_term)) == -1)
 		return ;
-	ft_putstr_fd("\033[?1049l", 2);
+	ft_putstr_fd("\033[?1049l", tinfo->fd);
 	tcgetattr(0, &(tinfo->term));
 	c = tinfo->term.c_cc[VSUSP];
 	ioctl(0, TIOCSTI, &c);
@@ -59,6 +59,6 @@ void		cont(int a)
 	tputs(tgetstr("vi", NULL), 1, my_outc);
 	if (tcsetattr(0, TCSADRAIN, &term_actual) == -1)
 		return ;
-	ft_putstr("\033[?1049h\033[H");
+	ft_putstr_fd("\033[?1049h\033[H", tinfo->fd);
 	ft_affichage(tinfo, 1);
 }
