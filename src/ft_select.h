@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:17:01 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 20:06:12 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 14:59:17 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_info				*ft_init_info(void);
 ** parssing.c
 */
 int					ft_parssing_opt(char **tabt, t_info *info);
+void				ft_help(void);
+void				ft_wait_enter(void);
 
 /*
 ** ft_lstaddend.c

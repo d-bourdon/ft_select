@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 12:32:49 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 20:07:19 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 15:32:32 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 t_info	*ft_init_info(void)
 {
 	t_info	*info;
-	
+
 	info = (t_info*)malloc(sizeof(t_info));
-	info->opt = 0;
+	info->opt = 1;
 	info->opts = NULL;
 	info->l_win = 0;
 	info->h_win = 0;

@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 11:01:32 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 20:14:31 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 14:51:09 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	ft_erreur(char *str, int mode)
 {
 	if (mode == 1 && !str)
 	{
-		ft_putstr_fd("un deux trois", g_info->fd);
-		exit(EXIT_FAILURE);
+		tcsetattr(0, TCSADRAIN, &(g_info->b_term));
+		ft_putstr_fd("\033[?1049l", g_info->fd);
+		tputs(tgetstr("ve", NULL), 1, my_outc);
+		kill(getppid(), SIGINT);
+		exit(1);
 	}
 	if (mode == 2 && str)
 	{

@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 14:25:23 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 20:06:58 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 15:09:55 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ void	ft_return(t_info *info)
 	{
 		if (tmp->select == 1)
 		{
-			ft_putstr(tmp->name);
 			if (info->opts && info->opts[0])
 				ft_putstr(info->opts[0]);
-			else
+			ft_putstr(tmp->name);
+			if (!info->opts)
 				ft_putchar(' ');
 			if (info->opts && info->opts[1])
 				ft_putstr(info->opts[1]);

@@ -6,12 +6,11 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 14:20:09 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 19:04:38 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 15:20:48 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
 
 void	ft_affichage(t_info *info, int mode)
 {

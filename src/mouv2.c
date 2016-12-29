@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/19 13:20:00 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 18:20:46 by dbourdon         ###   ########.fr       */
+/*   Created: 2016/12/28 18:20:46 by dbourdon          #+#    #+#             */
+/*   Updated: 2016/12/29 15:21:02 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		ft_move(t_info *info, char *buff)
+int				ft_move(t_info *info, char *buff)
 {
 	if (buff[1] == 0 && buff[2] == 0)
 		return (0);
@@ -41,7 +41,7 @@ static t_elem	*ft_move_down2(t_info *info, int i, int j)
 	return (tmp);
 }
 
-void	ft_move_down(t_info *info)
+void			ft_move_down(t_info *info)
 {
 	t_elem	*tmp;
 	int		i;
@@ -66,7 +66,7 @@ void	ft_move_down(t_info *info)
 	}
 }
 
-void	ft_move_up(t_info *info)
+void			ft_move_up(t_info *info)
 {
 	int		i;
 	int		j;

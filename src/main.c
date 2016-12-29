@@ -6,13 +6,13 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 20:24:53 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 15:29:17 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		main(int argc, char** argv)
+int		main(int argc, char **argv)
 {
 	t_info	*info;
 	int		i;
@@ -20,20 +20,20 @@ int		main(int argc, char** argv)
 	i = argc;
 	info = ft_init_info();
 	g_info = info;
+	ft_putstr_fd("\033[?1049h\033[H", info->fd);
+	if (ft_init_term(info) != 0)
+		ft_erreur(NULL, 1);
 	if (ft_parssing_opt(argv, info) == 0)
 		ft_erreur(NULL, 1);
 	ft_stock(argv, info, argc);
 	info->elem->etat = 1;
-	ft_putstr_fd("\033[?1049h\033[H", info->fd);
 	ft_affichage(info, 0);
-	if (ft_init_term(info) != 0)
-		ft_erreur(NULL, 1);
 	voir_touche(info);
-	tcsetattr(0, TCSADRAIN, &(g_info->b_term));
+	tcsetattr(0, TCSADRAIN, &(info->b_term));
 	ft_putstr_fd("\033[?1049l", info->fd);
 	tputs(tgetstr("ve", NULL), 1, my_outc);
-	write(1, "\0", 1);
-	return(1);
+	kill(getppid(), SIGINT);
+	return (1);
 }
 
 int		voir_touche(t_info *info)
@@ -50,6 +50,8 @@ int		voir_touche(t_info *info)
 		if (buffer[0] == 32 && buffer[1] == 0 && buffer[2] == 0)
 			ft_selection(info);
 		else if (buffer[0] == 127 && buffer[1] == 0 && buffer[2] == 0)
+			ft_suppr(info);
+		else if (buffer[0] == 126 && buffer[1] == 0 && buffer[2] == 0)
 			ft_suppr(info);
 		else if (buffer[0] == 10 && buffer[1] == 0 && buffer[2] == 0)
 			ft_return(info);

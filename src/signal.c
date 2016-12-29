@@ -6,7 +6,7 @@
 /*   By: dbourdon <dbourdon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 16:07:06 by dbourdon          #+#    #+#             */
-/*   Updated: 2016/12/28 18:21:36 by dbourdon         ###   ########.fr       */
+/*   Updated: 2016/12/29 15:21:33 by dbourdon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	cont(int a)
 {
 	char			*term_name;
 	struct termios	term_actual;
-	
+
 	a = 0;
 	signal(SIGTSTP, stop);
 	if (!(term_name = getenv("TERM")))
