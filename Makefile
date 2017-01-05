@@ -25,17 +25,19 @@ SRC = 	./src/affichage.c \
 
 OBJ = $(SRC:.c=.o)
 
+MALIB = libft/libft.a
+
 FLAGS = -Wall -Wextra -Werror
 
-.PHONY: clean fclean re libft norme check
+.PHONY: clean fclean re norme check
 
-all: $(NAME)
+ all: $(NAME)
 
-$(NAME) : libft $(OBG)
-	-@clang $(FLAGS) $(SRC) -g -o $(NAME) -L./libft/ -lft -l termcap
+$(NAME) : $(MALIB) $(OBJ)
+	clang $(FLAGS) $(SRC) -g -o $(NAME) -L./libft/ -lft -l termcap
 	@echo "Compilation"
 
-libft:
+$(MALIB):
 	-@make -C libft/
 
 clean: 
